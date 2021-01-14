@@ -1,6 +1,6 @@
 from testes_function import teste
 
-teste.teste_sobreposicao()
+teste.teste_heranca_mutipla()
 
 
 

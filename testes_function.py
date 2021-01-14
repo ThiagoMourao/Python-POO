@@ -2,7 +2,7 @@ from pessoa.pessoa import Pessoa
 from produto.produto import Produto, CarrinhoDeCompras
 from pessoa.cliente import Cliente
 from pessoa.escritor import Escritor, Caneta, MaquinaDeEscrever
-from pessoa.funcionario import Funcionario, Endereco, Gerente, Diretor
+from pessoa.funcionario import Funcionario, Endereco, Gerente, Diretor, Gerente2
 
 class teste:
     def teste1():
@@ -92,4 +92,9 @@ class teste:
         diretor1 = Diretor('John', 47, 11122233355)
         diretor1.gerenciar()
         print(diretor1.cpf)
+
+    def teste_heranca_mutipla():
+        gerente2 = Gerente2('Carlos', 45, 22299988877)
+        gerente2.gerenciar_estoque()
+
 

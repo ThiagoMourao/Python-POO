@@ -1,10 +1,11 @@
 from pessoa.pessoa import Pessoa
 
 class Funcionario:
-    def __init__(self, nome, idade):
+    def __init__(self, nome, idade, carteira_trabalho):
         self.nome = nome
         self.idade = idade
         self.enderecos = []
+        self.carteira_trabalho = carteira_trabalho
 
     def insere_endereco(self, cidade, estado):
         self.enderecos.append(Endereco(cidade, estado))
@@ -38,4 +39,12 @@ class Diretor(Gerente):
         Pessoa.get_ano_nascimento(self)
         super().gerenciar()
         print('O diretor esta administrando, aguarde...')
+
+class Gerente2(Pessoa, Funcionario): #A ordem dos parametros é exatamente a ordem de busca em profundidade dos metodos e variaveis
+    def __init__(self, nome, idade,cpf):
+        super().__init__(self, nome, idade)        
+        self.cpf = cpf
+
+    def gerenciar_estoque(self):
+        print(f'O gerente 2:{self.nome}')    
     
