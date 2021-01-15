@@ -3,9 +3,11 @@ from produto.produto import Produto, CarrinhoDeCompras
 from pessoa.cliente import Cliente
 from pessoa.escritor import Escritor, Caneta, MaquinaDeEscrever
 from pessoa.funcionario import Funcionario, Endereco, Gerente, Diretor, Gerente2
+from classes_genericas.abstrato import ContaPoupanca, ContaCorrente
+
 
 class teste:
-    def teste1():
+    def teste1(self):
         #p1 = Pessoa('Thiago', 23)
         #p2 = Pessoa('Maria', 33)
 
@@ -16,7 +18,7 @@ class teste:
 
         print(Pessoa.gera_random())
 
-    def teste2():
+    def teste2(self):
         produto1 = Produto('Camisa', 'R$50')
         produto1.desconto(10)
 
@@ -29,7 +31,7 @@ class teste:
         print(produto2.nome)
         print(produto2.preco)
 
-    def teste_encapsulamento():
+    def teste_encapsulamento(self):
         bd = Cliente()
         bd.inserir_cliente(1, 'Thiago')
         bd.inserir_cliente(2, 'Ana')
@@ -45,7 +47,7 @@ class teste:
         
         print(bd.dados) #Com Get consegue acessar o valor
 
-    def teste_associacao(): # só passa um objeto como paramentro
+    def teste_associacao(self): # só passa um objeto como paramentro
         escritor = Escritor('Jao')
         #print(escritor.nome)
 
@@ -58,7 +60,7 @@ class teste:
         escritor.ferramenta = maquina
         escritor.ferramenta.escrever()
 
-    def teste_agregado(): # ainda independentes, mas foram feitas para funcionar juntos
+    def teste_agregado(self): # ainda independentes, mas foram feitas para funcionar juntos
         carrinho = CarrinhoDeCompras()
 
         produto1 = Produto('Banana', 5)
@@ -72,29 +74,38 @@ class teste:
         carrinho.lista_produtos()
         print(f'O total e:{carrinho.soma_total()}')
 
-    def teste_composicao(): # dependencia total de instanciamento
-        func1 = Funcionario('Maria', 32)
+    def teste_composicao(self): # dependencia total de instanciamento
+        func1 = Funcionario('Maria', 32, 'carteira1')
         func1.insere_endereco('Belo Horizonte', 'MG')
         print(f'{func1.nome}, e seus enderecos:')
         func1.lista_enderecos()
 
-        func2 = Funcionario('Tez', 55)
+        func2 = Funcionario('Tez', 55, 'carteira2')
         func2.insere_endereco('Salvador', 'BA')
         func2.insere_endereco('Rio de Janeiro', 'RJ')
         print(f'{func2.nome}, e seus enderecos:')
         func2.lista_enderecos()   
 
-    def teste_heranca_simples():
+    def teste_heranca_simples(self):
         gerente1 = Gerente('Marcos', 20)
         gerente1.gerenciar()
 
-    def teste_sobreposicao():
+    def teste_sobreposicao(self):
         diretor1 = Diretor('John', 47, 11122233355)
         diretor1.gerenciar()
         print(diretor1.cpf)
 
-    def teste_heranca_mutipla():
+    def teste_heranca_mutipla(self):
         gerente2 = Gerente2('Carlos', 45, 22299988877)
         gerente2.gerenciar_estoque()
 
+    def teste_classe_abstrata(self):
+        #obj = ContaPoupanca(1111, 2222, 0)
+        #obj.depositar(10)
+        #obj.sacar(5)
 
+        obj = ContaCorrente(1111, 2222, 0, 500)
+        obj.depositar(100)
+        obj.sacar(250)
+        obj.sacar(500)
+        

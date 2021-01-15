@@ -1,6 +1,7 @@
 from datetime import datetime
 from random import randint
 
+
 class Pessoa:
     ano_atual = int(datetime.strftime(datetime.now(), '%Y'))
 
