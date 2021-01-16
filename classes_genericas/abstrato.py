@@ -1,4 +1,5 @@
 from abc import ABC, abstractclassmethod
+from exceptions.exception import UmErroEspecificoError
 
 
 class Conta(ABC):
@@ -39,8 +40,7 @@ class Conta(ABC):
         print(f'Saldo: {self.saldo}')       
 
     @abstractclassmethod
-    def sacar(self, valor):
-        pass
+    def sacar(self, valor): pass
 
 class ContaPoupanca(Conta):
     def sacar(self, valor):
@@ -61,9 +61,12 @@ class ContaCorrente(Conta):
         return self._limite
 
     def sacar(self, valor):
-        if (self.saldo + self.limite) < valor:
-            print('Saldo insuficiente')
-            return
+        try:
+            if (self.saldo + self.limite) < valor:
+                print('Saldo insuficiente')
+                return
 
-        self.saldo -= valor
-        self.extrato()
+            self.saldo -= valor
+            self.extrato()
+        except UmErroEspecificoError as e:
+            print(f'Erro: {e}')

@@ -4,6 +4,7 @@ from pessoa.cliente import Cliente
 from pessoa.escritor import Escritor, Caneta, MaquinaDeEscrever
 from pessoa.funcionario import Funcionario, Endereco, Gerente, Diretor, Gerente2
 from classes_genericas.abstrato import ContaPoupanca, ContaCorrente
+from figuras.geometricas import Retangulo
 
 
 class teste:
@@ -108,4 +109,9 @@ class teste:
         obj.depositar(100)
         obj.sacar(250)
         obj.sacar(500)
-        
+
+    def teste_sobrecarga(self):
+        r1 = Retangulo(10, 20)
+        r2 = Retangulo(10, 20)
+        r3 = r1 + r2
+        print(r1 == r2)    
