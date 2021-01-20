@@ -1,7 +1,7 @@
 from testes_function import teste
 
 obj = teste()
-obj.teste_sobrecarga()
+obj.gerenciador_contexto()
 
 
 

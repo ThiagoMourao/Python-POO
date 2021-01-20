@@ -3,6 +3,9 @@ from exceptions.exception import UmErroEspecificoError
 
 
 class Conta(ABC):
+    def __new__(cls, *args, **kwargs): #construtor da classe
+        return object.__new__(cls)
+    
     def __init__(self, agencia, conta, saldo):
         self._agencia = agencia
         self._conta = conta
@@ -43,6 +46,12 @@ class Conta(ABC):
     def sacar(self, valor): pass
 
 class ContaPoupanca(Conta):
+    def __new__(cls, *args, **kwargs): #construtor da classe
+        if not hasattr(cls, '_jaExiste'): # padrão singleton: garante a existencia de apenas uma instacia da classe
+            cls._jaExiste = object.__new__(cls)
+
+        return cls._jaExiste
+
     def sacar(self, valor):
         if self.saldo < valor:
             print('Saldo insuficiente')

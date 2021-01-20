@@ -5,6 +5,7 @@ from pessoa.escritor import Escritor, Caneta, MaquinaDeEscrever
 from pessoa.funcionario import Funcionario, Endereco, Gerente, Diretor, Gerente2
 from classes_genericas.abstrato import ContaPoupanca, ContaCorrente
 from figuras.geometricas import Retangulo
+from arquivos.gerenciador_arquivo import Arquivo, decorador_arquivo
 
 
 class teste:
@@ -114,4 +115,22 @@ class teste:
         r1 = Retangulo(10, 20)
         r2 = Retangulo(10, 20)
         r3 = r1 + r2
-        print(r1 == r2)    
+        print(r1 == r2)
+
+    def teste_metodos_magicos(self):
+        a = Retangulo(5,5)
+        a(1,2,3,4,5, nome='Thiago')    
+
+        a.nome = 10
+        print (a.nome)
+
+        print(a)
+
+    def gerenciador_contexto(self):
+        #with Arquivo('arquivos/texto.txt', 'w') as arquivo:
+        #    arquivo.write('testando escrita')
+        
+       decorador = decorador_arquivo()
+       with decorador.open_arquivo('arquivos/texto.txt', 'w') as arquivo:
+           arquivo.write('Linha 1 de teste')
+
