@@ -1,21 +1,54 @@
-class Retangulo:
+"""Responsavel por criar e manipular objetos geometricos"""
+
+#meta classes
+class Meta(type): 
+    def __new__(mcs, name, bases, namespace):
+        print(f'{name} ! \n' )
+        
+        # garante que os tratamentos não sejá feito na class 'pai'
+        if name == 'Retangulo': 
+            return type.__new__(mcs, name, bases, namespace)
+
+        if 'attr_class' in namespace:
+            print(f'{name} tentou sobrescrever o atributo, a regra de negocio não permite nesse caso! \n')
+            del namespace['attr_class']
+
+        # garante a criação de funçoes obrigatorias em classes que herdam
+        if 'get_area' not in namespace: 
+            print(f'Erro ao instanciar a class {name}, favor criar a função get_area \n nas classes que herdam de Retangulo!')
+            return None
+        elif not callable(namespace['get_area']):
+            print(f'get_area precisa ser um método, e não um atributo, em {name}')
+            return None
+
+
+        print(f'{namespace} ! \n' )
+        return type.__new__(mcs, name, bases, namespace)
+
+class Retangulo(metaclass= Meta):
+    attr_class = 'cálculo do Retangulo'
+    
     def __init__(self, x, y):
         self.x = x
         self.y = y
         
 
-    def __call__(self, *args, **kwargs): #caso de chamadas simples da classe
+    #caso de chamadas simples da classe
+    def __call__(self, *args, **kwargs): 
         print(args)
         print(kwargs)
 
-    def __setattr__(self, key, value): #seta novas variaveis a classe
+    #seta novas variaveis a classe
+    def __setattr__(self, key, value): 
         self.__dict__[key] = value
         print(key, value)
 
-    def __str__(self): # printar so a classe em si
+    # printar so a classe em si
+    def __str__(self): 
         return 'A classe retangulo foi criada pra calculos'
 
-    def __len__(self): #retorna a chamada do len da classe (tamanho)
+    #retorna a chamada do len da classe (tamanho)
+    def __len__(self): 
         return 51
     
     def __repr__(self):
@@ -30,7 +63,8 @@ class Retangulo:
         new_y = self.y + other.y
         return Retangulo(new_x, new_y)
 
-    def __lt__(self, other): # self < other, neste caso são os dois objetos como parametro
+    # self < other, neste caso são os dois objetos como parametro
+    def __lt__(self, other): 
         a1 = self.get_area()
         a2 = other.get_area()
 
@@ -38,8 +72,9 @@ class Retangulo:
             return True
         else:
             return False
-
-    def __gt__(self, other):# self > other
+    
+    # self > other
+    def __gt__(self, other):
         a1 = self.get_area()
         a2 = other.get_area()
 
@@ -48,8 +83,19 @@ class Retangulo:
         else:
             return False
 
-    def __eq__(self, other):# self == other(neste caso compara se os valores do objeto são iguais, e não o objeto em si)
+    # self == other(neste caso compara se os valores do objeto são iguais, e não o objeto em si)
+    def __eq__(self, other):
         if self.x == other.x and self.y == other.y:
             return True
         else:
             return False    
+
+#Responsavel por criar e manipular objetos geometricos
+class Quadrado(Retangulo):
+    def __init__(self, x, y):
+        Retangulo.__init__(self, x, y)
+
+    attr_class = 'cálculo do quadrado'
+
+    def get_area(self):
+        return self.x * self.y

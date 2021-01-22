@@ -1,7 +1,7 @@
 from testes_function import teste
 
 obj = teste()
-obj.gerenciador_contexto()
+obj.teste_metodos_magicos()
 
 
 

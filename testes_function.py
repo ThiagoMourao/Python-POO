@@ -4,7 +4,7 @@ from pessoa.cliente import Cliente
 from pessoa.escritor import Escritor, Caneta, MaquinaDeEscrever
 from pessoa.funcionario import Funcionario, Endereco, Gerente, Diretor, Gerente2
 from classes_genericas.abstrato import ContaPoupanca, ContaCorrente
-from figuras.geometricas import Retangulo
+from figuras.geometricas import Retangulo, Quadrado
 from arquivos.gerenciador_arquivo import Arquivo, decorador_arquivo
 
 
@@ -118,13 +118,15 @@ class teste:
         print(r1 == r2)
 
     def teste_metodos_magicos(self):
-        a = Retangulo(5,5)
+        a = Quadrado(5,5)
         a(1,2,3,4,5, nome='Thiago')    
 
         a.nome = 10
         print (a.nome)
 
         print(a)
+        print(f'\n{a.attr_class}')
+        help(Quadrado)
 
     def gerenciador_contexto(self):
         #with Arquivo('arquivos/texto.txt', 'w') as arquivo:
@@ -132,5 +134,5 @@ class teste:
         
        decorador = decorador_arquivo()
        with decorador.open_arquivo('arquivos/texto.txt', 'w') as arquivo:
-           arquivo.write('Linha 1 de teste')
+           arquivo.write('Linha 1 de teste') 
 
