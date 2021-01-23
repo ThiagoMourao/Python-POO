@@ -4,7 +4,7 @@ from pessoa.cliente import Cliente
 from pessoa.escritor import Escritor, Caneta, MaquinaDeEscrever
 from pessoa.funcionario import Funcionario, Endereco, Gerente, Diretor, Gerente2
 from classes_genericas.abstrato import ContaPoupanca, ContaCorrente
-from figuras.geometricas import Retangulo, Quadrado
+from figuras.geometricas import Retangulo, Quadrado, Circulo
 from arquivos.gerenciador_arquivo import Arquivo, decorador_arquivo
 
 
@@ -135,4 +135,7 @@ class teste:
        decorador = decorador_arquivo()
        with decorador.open_arquivo('arquivos/texto.txt', 'w') as arquivo:
            arquivo.write('Linha 1 de teste') 
-
+    
+    def teste_meta_classes(self):
+        c1 = Circulo(2.5)
+        print(f'O raio do circulo e: {c1.area()}')

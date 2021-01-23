@@ -1,4 +1,11 @@
-"""Responsavel por criar e manipular objetos geometricos"""
+from dataclasses import dataclass
+import math
+
+"""
+Responsavel por criar e manipular objetos geometricos
+
+Lorem ipsum dolor sit amet, consectetur adiposcing elit, Vivamus
+"""""
 
 #meta classes
 class Meta(type): 
@@ -31,6 +38,10 @@ class Retangulo(metaclass= Meta):
     def __init__(self, x, y):
         self.x = x
         self.y = y
+
+    # executado logo apos o __init__, pode ser util para fazer algum controle
+    def __post_init__(self):
+        pass
         
 
     #caso de chamadas simples da classe
@@ -92,10 +103,40 @@ class Retangulo(metaclass= Meta):
 
 #Responsavel por criar e manipular objetos geometricos
 class Quadrado(Retangulo):
+    """
+    Documentação da classse Quadrado
+
+    Esta é um exemplo de documentação para fins de estudos e testes praticos
+    """""
     def __init__(self, x, y):
         Retangulo.__init__(self, x, y)
 
     attr_class = 'cálculo do quadrado'
 
     def get_area(self):
+        """
+        multiplica os lados
+
+        :param x: Primeiro numero
+        :type x: int or float
+        :param y: Segundo numero
+        :type y: int or float
+
+        :return: A multiplicação entre x e y
+        :rtype: int or float
+        """
         return self.x * self.y
+
+#data classes
+@dataclass()
+class Circulo:
+    raio: float
+    
+    def __post_init__(self):
+        if not (isinstance(self.raio, float)) and not (isinstance(self.raio, int)):
+            raise TypeError(
+                f'Tipo invalido {type(self.raio).__name__} != float or int em {self}'
+            ) 
+
+    def area(self):
+        return math.pi * (self.raio ** 2) 
