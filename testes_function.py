@@ -3,7 +3,7 @@ from produto.produto import Produto, CarrinhoDeCompras
 from pessoa.cliente import Cliente
 from pessoa.escritor import Escritor, Caneta, MaquinaDeEscrever
 from pessoa.funcionario import Funcionario, Endereco, Gerente, Diretor, Gerente2
-from classes_genericas.abstrato import ContaPoupanca, ContaCorrente
+from classes_genericas.abstrato import ContaPoupanca, ContaCorrente, AcountType
 from figuras.geometricas import Retangulo, Quadrado, Circulo
 from arquivos.gerenciador_arquivo import Arquivo, decorador_arquivo
 
@@ -139,3 +139,7 @@ class teste:
     def teste_meta_classes(self):
         c1 = Circulo(2.5)
         print(f'O raio do circulo e: {c1.area()}')
+
+    def teste_enum(self):
+        c1 = ContaCorrente(2, 123, 100)
+        c1.transferenciaEntreContas(AcountType.contaPoupancaFixada)

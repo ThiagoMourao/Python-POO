@@ -1,7 +1,7 @@
 from testes_function import teste
 
 obj = teste()
-obj.teste_meta_classes()
+obj.teste_enum()
 
 
 

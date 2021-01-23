@@ -1,5 +1,12 @@
 from abc import ABC, abstractclassmethod
 from exceptions.exception import UmErroEspecificoError
+from enum import Enum, auto
+
+class AcountType(Enum):
+    contaSalario = 'Conta Salario'
+    contaPoupancaFixada = 'Conta poupanca indexada'
+    contaPoupanca_comun = 'Conta poupanca'
+    contaCorrente = 'Conta corrente'
 
 
 class Conta(ABC):
@@ -68,6 +75,12 @@ class ContaCorrente(Conta):
     @property
     def limite(self):
         return self._limite
+
+    def transferenciaEntreContas(self, contaDestino):
+        if not isinstance(contaDestino, AcountType):
+            raise ValueError(f'Não existe {contaDestino} como variação de conta no momento, por favor tente outra')
+
+        return print(f'Transferencia para {contaDestino.value} realizada com sucesso!')
 
     def sacar(self, valor):
         try:
